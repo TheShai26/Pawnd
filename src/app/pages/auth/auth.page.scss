@@ -1,0 +1,15 @@
+.content {
+  --background: #fff;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;     /* vertical */
+  height: 100%;            /* importante para que funcione */
+}
+
+.auth-form {
+  width: 90%;
+  max-width: 400px;
+}
