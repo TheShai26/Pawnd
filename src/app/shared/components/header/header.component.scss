@@ -1,6 +1,20 @@
 .admin{
-    font-size: 13px;    
+    font-size: 13px;
+    color: white;
+    .logo-text {
+  font-family: 'Lobster', cursive;
+}
 }
 .toolbar-padding {
   padding-left: 16px;
+
+}
+
+.header-title{
+  color: white;
+}
+
+.custom-header,
+ion-toolbar.toolbar-padding {
+  --background: #236084; /* Forma correcta en Ionic */
 }
