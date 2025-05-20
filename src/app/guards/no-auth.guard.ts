@@ -7,7 +7,7 @@ import { UtilsService } from "../services/utils.service";
 @Injectable({
   providedIn: 'root'
 })
-export class NoAuthGuard implements CanActivate { 
+export class NoAuthGuard implements CanActivate {
 
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
@@ -16,16 +16,13 @@ export class NoAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      let user = localStorage.getItem('user');
-
     return new Promise((resolve) => {
       this.firebaseSvc.getAuth().onAuthStateChanged((auth) => {
 
-        if(auth){
-            if (user) resolve(true);
-        }
-        else{
-          this.utilsSvc.routerLink('/auth');
+        if (!auth) resolve(true);
+
+        else {
+          this.utilsSvc.routerLink('/main/home');
           resolve(false);
         }
       })

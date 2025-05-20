@@ -16,10 +16,15 @@
 
 .custom-header,
 ion-toolbar.toolbar-padding {
-  --background: #236084; /* Forma correcta en Ionic */
+  --background: #236084; 
 }
 
 ion-back-button {
   --color: #ffffff;
   margin-left: -18px;
+}
+
+.modal-close-button{
+  --color: #ffffff;
+  margin-left: -13px;
 }
