@@ -18,3 +18,8 @@
 ion-toolbar.toolbar-padding {
   --background: #236084; /* Forma correcta en Ionic */
 }
+
+ion-back-button {
+  --color: #ffffff;
+  margin-left: -18px;
+}
