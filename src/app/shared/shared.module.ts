@@ -6,6 +6,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUpdatePostComponent } from './components/add-update-post/add-update-post.component';
+import { AddLostPetComponent } from './components/add-lost-pet/add-lost-pet.component';
+import { AddFoundPetComponent } from './components/add-found-pet/add-found-pet.component';
 
 
 
@@ -14,14 +16,18 @@ import { AddUpdatePostComponent } from './components/add-update-post/add-update-
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
-    AddUpdatePostComponent
+    AddUpdatePostComponent,
+    AddLostPetComponent,
+    AddFoundPetComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
     ReactiveFormsModule,
-    AddUpdatePostComponent
+    AddUpdatePostComponent,
+    AddLostPetComponent,
+    AddFoundPetComponent
   ],
   imports: [
     CommonModule,

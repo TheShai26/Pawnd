@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { AddUpdatePostComponent } from 'src/app/shared/components/add-update-post/add-update-post.component';
+import { AddLostPetComponent } from 'src/app/shared/components/add-lost-pet/add-lost-pet.component';
+import { AddFoundPetComponent } from 'src/app/shared/components/add-found-pet/add-found-pet.component';
 
 @Component({
   standalone: false,
@@ -20,12 +21,14 @@ export class HomePage implements OnInit {
   signOut(){
     this.firebaseSvc.signOut();
   }
+  
+//===== Agregar o actualizar Post =====
+  openAddPost(tipo: 'perdida' | 'encontrada') {
+  const component = tipo === 'perdida' ? AddLostPetComponent : AddFoundPetComponent;
 
-  //===== Agregar o actualizar Post =====
-  addUpdatePost(){
-    this.utilsSvc.presentModal({
-      component: AddUpdatePostComponent,
-      cssClass: 'add-update-modal'
-    })
-  }
+  this.utilsSvc.presentModal({
+    component,
+    cssClass: 'add-update-modal'
+  });
+}
 }

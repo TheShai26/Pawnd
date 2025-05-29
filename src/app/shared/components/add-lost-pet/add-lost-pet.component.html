@@ -8,7 +8,7 @@
 <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
 <ion-button (click)="takeImage()" expand="block" fill="clear" shape="round">
-    Elegir foto
+    Seleccionar imagen
 </ion-button>
 
       <!===== Pet Name =====>
@@ -52,7 +52,7 @@
       <div class="validators" *ngIf="form.controls.descriptionPet.errors && form.controls.descriptionPet.touched">
 
         <div *ngIf="form.controls.descriptionPet.errors?.['required']">Ingresar descripción de tu mascota</div>
-        <div *ngIf="form.controls.descriptionPet.errors?.['minLength']">El nombre debe tener al menos 2 caracteres</div>
+        <div *ngIf="form.controls.descriptionPet.errors?.['minLength']">La descripción debe tener al menos 20 caracteres</div>
 
       </div>  
 
@@ -67,7 +67,37 @@
       <div class="validators" *ngIf="form.controls.lastUbiPet.errors && form.controls.lastUbiPet.touched">
 
         <div *ngIf="form.controls.lastUbiPet.errors?.['required']">Ingresar la ultima ubicación vista</div>
-        <div *ngIf="form.controls.lastUbiPet.errors?.['minLength']">El nombre debe tener al menos 2 caracteres</div>
+        <div *ngIf="form.controls.lastUbiPet.errors?.['minLength']">La ubicación debe tener al menos 20 caracteres</div>
+
+      </div>  
+
+      <!===== Date lost =====>
+      <app-custom-input 
+        autocomplete="dateLost"
+        [control]="form.controls.dateLost"
+        type="text"
+        label="Fecha de perdida"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.dateLost.errors && form.controls.dateLost.touched">
+
+        <div *ngIf="form.controls.dateLost.errors?.['required']">Ingresar la fecha de perdida</div>
+        <div *ngIf="form.controls.dateLost.errors?.['minLength']">La fecha debe tener al menos 2 caracteres</div>
+
+      </div>
+
+      <!===== Contact =====>
+      <app-custom-input 
+        autocomplete="contactInfo"
+        [control]="form.controls.contactInfo "
+        type="text"
+        label="Información de contacto"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.contactInfo.errors && form.controls.contactInfo.touched">
+
+        <div *ngIf="form.controls.contactInfo.errors?.['required']">Ingresar la información de contacto"</div>
+        <div *ngIf="form.controls.contactInfo.errors?.['minLength']">El contacto debe tener al menos 9 caracteres</div>
 
       </div>  
 

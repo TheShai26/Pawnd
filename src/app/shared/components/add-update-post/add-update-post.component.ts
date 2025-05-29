@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { Input } from '@angular/core';
 
 @Component({
   standalone: false,
@@ -11,6 +12,8 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./add-update-post.component.scss'],
 })
 export class AddUpdatePostComponent implements OnInit {
+
+  @Input() tipoPost: 'perdida' | 'encontrada' = 'perdida';
 
   form = new FormGroup({
     id: new FormControl(''),

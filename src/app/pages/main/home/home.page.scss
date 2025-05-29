@@ -1,0 +1,33 @@
+ion-fab-button.petLost ion-icon {
+  color: orange;
+}
+
+ion-fab-button.petFound ion-icon {
+  color: green;
+}
+
+.fab-label.lost {
+      background-color: rgba(255, 165, 0, 0.7);
+      border: 1px solid orange;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      white-space: nowrap;
+      margin-left: -160px;
+      transform: translateY(-33px);
+}
+
+.fab-label.found {
+      background-color: rgba(0, 128, 0, 0.6); // verde con transparencia
+      border: 1px solid green;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      white-space: nowrap;
+      margin-left: -160px;
+      transform: translateY(-33px);
+}

@@ -1,0 +1,97 @@
+<app-header 
+  [isModal]="true" 
+  [title]="tipoPost === 'perdida' ? 'Publicar Mascota Perdida' : 'Publicar Mascota Encontrada'">
+</app-header>
+
+<ion-content>
+
+<form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+<ion-button (click)="takeImage()" expand="block" fill="clear" shape="round">
+    Seleccionar Imagen
+</ion-button>
+
+      <!===== Pet type =====>
+      <app-custom-input 
+        autocomplete="peType"
+        [control]="form.controls.peType"
+        type="text"
+        label="Tipo de mascota"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.peType.errors && form.controls.peType.touched">
+
+        <div *ngIf="form.controls.peType.errors?.['required']">Ingresar que tipo de mascota</div>
+        <div *ngIf="form.controls.peType.errors?.['minLength']">El tipo de mascota  debe tener al menos 4 caracteres</div>
+
+      </div>  
+
+      <!===== Description Pet =====>
+      <app-custom-input 
+        autocomplete="descriptionPet"
+        [control]="form.controls.descriptionPet"
+        type="text"
+        label="Descripción de la mascota"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.descriptionPet.errors && form.controls.descriptionPet.touched">
+
+        <div *ngIf="form.controls.descriptionPet.errors?.['required']">Ingresar descripción de tu mascota</div>
+        <div *ngIf="form.controls.descriptionPet.errors?.['minLength']">La descripción debe tener al menos 20 caracteres</div>
+
+      </div>  
+
+      <!===== Found ubication =====>
+      <app-custom-input 
+        autocomplete="foundLocation"
+        [control]="form.controls.foundLocation"
+        type="text"
+        label="Ubicación de hallazgo"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.foundLocation.errors && form.controls.foundLocation.touched">
+
+        <div *ngIf="form.controls.foundLocation.errors?.['required']">Ingresar la ultima ubicación de hallazgo</div>
+        <div *ngIf="form.controls.foundLocation.errors?.['minLength']">La ubicación debe tener al menos 20 caracteres</div>
+
+      </div>  
+
+      <!===== Date found =====>
+      <app-custom-input 
+        autocomplete="dateFound"
+        [control]="form.controls.dateFound"
+        type="text"
+        label="Fecha de hallazgo"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.dateFound.errors && form.controls.dateFound.touched">
+
+        <div *ngIf="form.controls.dateFound.errors?.['required']">Ingresar la fecha de hallazgo"</div>
+        <div *ngIf="form.controls.dateFound.errors?.['minLength']">La fecha debe tener al menos 2 caracteres</div>
+
+      </div>
+
+      <!===== Contact =====>
+      <app-custom-input 
+        autocomplete="contactInfo"
+        [control]="form.controls.contactInfo "
+        type="text"
+        label="Datos de contacto"
+      ></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.contactInfo.errors && form.controls.contactInfo.touched">
+
+        <div *ngIf="form.controls.contactInfo.errors?.['required']">Ingresar datos de contacto</div>
+        <div *ngIf="form.controls.contactInfo.errors?.['minLength']">El contacto debe tener al menos 9 caracteres</div>
+
+      </div>  
+
+      
+
+      <ion-button mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
+        Añadir publicación 
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+    </form>
+
+</ion-content>

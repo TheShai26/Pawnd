@@ -60,5 +60,29 @@ export class FirebaseService {
     return (await getDoc(doc(getFirestore(),path))).data();
   }
 
+   //===== Guardar post mascota perdida =====
+  async addLostPetPost(postData: any) {
+    const id = this.firestore.createId(); 
+    const path = `lostPets/${id}`;
+    const data = {
+      ...postData,
+      id,
+      createdAt: new Date()
+    };
+    return this.setDocument(path, data);
+  }
+
+  //===== Guardar post mascota encontrada =====
+  async addFoundPetPost(postData: any) {
+    const id = this.firestore.createId();
+    const path = `foundPets/${id}`;
+    const data = {
+      ...postData,
+      id,
+      createdAt: new Date()
+    };
+    return this.setDocument(path, data);
+  }
+
 
 }

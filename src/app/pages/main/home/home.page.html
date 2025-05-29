@@ -2,15 +2,27 @@
 
 <ion-content>
 
-  <!--===== Nuevo Post =====-->
-  <ion-button (click)="signOut()">
-    cerrar sesion
+  <ion-button (click)="signOut()" expand="block" fill="clear" shape="round">
+    cerrar sesión
   </ion-button>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button (click)="addUpdatePost()">
+  <!-- Nueva publicación de mascota perdida o encontrada --->
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
+  <ion-fab-list side="top">
+    <span class="fab-label lost">Mascota Perdida</span>
+    <ion-fab-button class="petLost" (click)="openAddPost('perdida')">
+      <ion-icon name="paw-outline"></ion-icon>
+      
+    </ion-fab-button>
+    <span class="fab-label found">Mascota Perdida</span>
+    <ion-fab-button class="petFound" (click)="openAddPost('encontrada')">
+      <ion-icon name="paw-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
 </ion-fab>
 
 </ion-content>
