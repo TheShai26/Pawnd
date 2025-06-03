@@ -7,8 +7,18 @@
 
 <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
-<ion-button (click)="takeImage()" expand="block" fill="clear" shape="round">
-    Seleccionar imagen
+  <!===== Si existe una imagen =====>
+  <ion-avatar *ngIf="form.value.image">
+    <img [src]="form.value.image" />
+  </ion-avatar>
+
+    <!===== Si no existe una imagen =====>
+<ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+  <br>
+  <!===== Tomar/Seleccionaar imagen =====>
+<ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+    Subir imagen
 </ion-button>
 
       <!===== Pet Name =====>

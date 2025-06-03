@@ -5,7 +5,6 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
 import { LogoComponent } from './components/logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddUpdatePostComponent } from './components/add-update-post/add-update-post.component';
 import { AddLostPetComponent } from './components/add-lost-pet/add-lost-pet.component';
 import { AddFoundPetComponent } from './components/add-found-pet/add-found-pet.component';
 
@@ -16,7 +15,6 @@ import { AddFoundPetComponent } from './components/add-found-pet/add-found-pet.c
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
-    AddUpdatePostComponent,
     AddLostPetComponent,
     AddFoundPetComponent
   ],
@@ -25,7 +23,6 @@ import { AddFoundPetComponent } from './components/add-found-pet/add-found-pet.c
     CustomInputComponent,
     LogoComponent,
     ReactiveFormsModule,
-    AddUpdatePostComponent,
     AddLostPetComponent,
     AddFoundPetComponent
   ],

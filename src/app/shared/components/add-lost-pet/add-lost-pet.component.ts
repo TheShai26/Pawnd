@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-
+import { User } from 'src/app/models/user.model';
 
 @Component({
   standalone: false,
@@ -15,6 +15,7 @@ export class AddLostPetComponent implements OnInit {
   tipoPost: string = 'perdida';
 
   form = new FormGroup({
+    id: new FormControl(''),
     image: new FormControl('', [Validators.required]),
     petName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     peType: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
@@ -28,7 +29,15 @@ export class AddLostPetComponent implements OnInit {
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
 
-  ngOnInit() {}
+  user = {} as User;
+
+  ngOnInit() {
+
+    this.user = this.utilsSvc.getFromLocalStorage('user'); 
+
+  }
+
+  // ===== Tomar foto =====
 
   async takeImage() {
     const dataUrl = await (await this.utilsSvc.takePicture('Imagen de la mascota perdida')).dataUrl;
@@ -37,25 +46,47 @@ export class AddLostPetComponent implements OnInit {
 
   async submit() {
     if (this.form.valid) {
+
+      let path = 'users/${this.user.uid}/posts'
+
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      try {
-        // Ajusta el método de Firebase que uses para guardar el post
-        await this.firebaseSvc.addLostPetPost(this.form.value);
+      // ===== Subir imagen y obtener url =====
+      let dataUrl = this.form.value.image;
+      let imagePath = 'users/${this.user.uid}/${Date.now()}';
+      let imageUrl = await this.firebaseSvc.uploadImage(imagePath, dataUrl);
+      this.form.controls.image.setValue(imageUrl);
+
+      delete this.form.value.id;
+
+      this.firebaseSvc.addDocument(path, this.form.value).then(async res => {
+
+        this.utilsSvc.dismissModal({success: true});
+
         this.utilsSvc.presentToast({
           message: 'Mascota perdida publicada con éxito',
-          color: 'success'
-        });
-        // Cerrar modal o resetear form si quieres
-      } catch (error: any) {
+          duration: 2500,
+          color: 'success',
+          position: 'middle',
+          icon: 'checkmark-circle-outline'
+        })
+
+        }).catch (error =>  {
+          console.log(error);
+
         this.utilsSvc.presentToast({
           message: error.message || 'Error al publicar mascota perdida',
-          color: 'danger'
-        });
-      } finally {
+          duration: 2500,
+          color: 'primary',
+          position: 'middle',
+          icon: 'alert-circle-outline'
+        })
+
+      }).finally(() => {
         loading.dismiss();
-      }
+      })
+
     }
   }
 }
